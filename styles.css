@@ -49,14 +49,14 @@ body {
     margin: 10px 0;
   }
   
-  /* Adicione esta regra para mudar a cor do link */
+   
   a {
     color: #2a6849; /* Substitua pela cor desejada */
     text-decoration: none; /* Remova o sublinhado padrão se preferir */
   }
   
-  /* Adicione uma regra para mudar a cor do link quando estiver sendo hover (passando o mouse sobre) */
+  
   a:hover {
-    color: rgb(0, 0, 0) 35; /* Substitua pela cor desejada ao passar o mouse */
+    color: rgb(0, 0, 0) 35; 
   }
   
