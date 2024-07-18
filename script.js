@@ -1,11 +1,11 @@
 function calcularNota() {
-    // Obter os valores inseridos pelo usuário
+   
     const p1 = parseFloat(document.getElementById('p1').value);
     const p2 = parseFloat(document.getElementById('p2').value);
     const iaf = parseFloat(document.getElementById('iaf').value);
     const pr = parseFloat(document.getElementById('pr').value);
   
-    // Verificar se as notas estão dentro dos limites
+    
     if (isNaN(p1) || isNaN(p2) || isNaN(iaf) || isNaN(pr) ||
         p1 < 0 || p1 > 3 ||
         p2 < 0 || p2 > 2 ||
@@ -15,10 +15,10 @@ function calcularNota() {
       return;
     }
   
-    // Calcular a nota final considerando as regras
+  
     const notaFinal = (p1 + p2 + iaf + pr) / 2;
   
-    // Exibir o resultado
+  
     document.getElementById('resultado').innerText = `Sua nota final pós PR é: ${notaFinal.toFixed(2)}`;
   }
   
