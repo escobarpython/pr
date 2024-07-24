@@ -8,8 +8,8 @@ body {
 }
 
 .calculator {
-  width: 320px; /* Aumentado para deixar mais "gordinha" */
-  padding: 25px; /* Aumentado para deixar mais "gordinha" */
+  width: 320px; 
+  padding: 25px; 
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   background-color: #fff;
