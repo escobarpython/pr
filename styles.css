@@ -1,62 +1,84 @@
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
-  }
-  
-  .calculator {
-    width: 300px;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    background-color: #fff;
-    font-family: 'Helvetica', sans-serif;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+}
 
-  
-  input {
-    width: calc(100% - 16px);
-    padding: 8px;
-    margin-bottom: 10px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  
-  #resultado,
-  #error-msg {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  #error-msg {
-    color: #ff0000;
-  }
-  
-  .separator {
-    border-top: 1px dashed #ccc;
-    margin: 10px 0;
-  }
-  
-   
-  a {
-    color: #2a6849; /* Substitua pela cor desejada */
-    text-decoration: none; /* Remova o sublinhado padrão se preferir */
-  }
-  
-  
-  a:hover {
-    color: rgb(0, 0, 0) 35; 
-  }
-  
+.calculator {
+  width: 320px; /* Aumentado para deixar mais "gordinha" */
+  padding: 25px; /* Aumentado para deixar mais "gordinha" */
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  font-family: 'Helvetica', sans-serif;
+}
+
+input {
+  width: calc(100% - 16px);
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button.small-button {
+  width: 50%;
+  padding: 5px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button#verMaisBtn {
+  margin-top: 10px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 8px;
+  width: auto;
+}
+
+#resultado,
+#resultado-extra,
+#error-msg {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#error-msg {
+  color: #ff0000;
+}
+
+.separator {
+  border-top: 1px dashed #ccc;
+  margin: 10px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+a {
+  color: #2a6849; 
+  text-decoration: none; 
+}
+
+a:hover {
+  color: rgb(0, 0, 0); 
+}
