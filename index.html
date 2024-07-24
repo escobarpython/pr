@@ -29,3 +29,34 @@
   <button onclick="calcularNota()">Nota Final</button>
 
   <div class="separator"></div>
+
+  <button id="verMaisBtn" onclick="toggleExtra()">+</button>
+  <div id="extraInputs" class="hidden">
+    <label for="sd">SD (máx. 2 pontos):</label>
+    <input type="number" id="sd" max="2" step="0.1">
+
+    <label for="pic">PIC (máx. 1 pontos):</label>
+    <input type="number" id="pic" max="1" step="0.1">
+
+    <label for="ponto-extra">Ponto Extra (máx. 0.5 ponto):</label>
+    <input type="number" id="ponto-extra" max="0.5" step="0.1">
+
+    <button class="small-button" onclick="calcularNotaComExtras()">Nota Final</button>
+  </div>
+
+  <p id="resultado"></p>
+  <p id="resultado-extra"></p>
+  <p id="error-msg"></p>
+  <div class="separator"></div>
+  </b>
+  <p class="footer-text">feito por  <a href="https://www.instagram.com/escobarpython/">@escobarpython</a> | <a href="https://github.com/escobarpython">GitHub</a></p>
+  <p class="footer-text">atualizado pela última vez em <b>24/07 - 1.6</b>.</p>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+<footer>
+    
+</footer>
+</html>
