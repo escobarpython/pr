@@ -6,8 +6,8 @@ function calcularNota() {
 
   if (isNaN(p1) || isNaN(p2) || isNaN(iaf) || isNaN(pr) ||
       p1 < 0 || p1 > 3 ||
-      p2 < 0 || p2 > 2 ||
-      iaf < 0 || iaf > 2 ||
+      p2 < 0 || p2 > 3 ||
+      iaf < 0 || iaf > 1 ||
       pr < 0 || pr > 7) {
     document.getElementById('resultado').innerText = 'Por favor, insira corretamente as informações.';
     return;
@@ -24,8 +24,8 @@ function calcularNotaComExtras() {
   const pontoExtra = parseFloat(document.getElementById('ponto-extra').value);
 
   if (isNaN(sd) || isNaN(pic) || isNaN(pontoExtra) ||
-      sd < 0 || sd > 2 ||
-      pic < 0 || pic > 1 ||
+      sd < 0 || sd > 1.5 ||
+      pic < 0 || pic > 1.5 ||
       pontoExtra < 0 || pontoExtra > 0.5) {
     document.getElementById('resultado-extra').innerText = 'Por favor, insira corretamente as informações extras.';
     return;
