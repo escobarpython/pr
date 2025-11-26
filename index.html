@@ -3,60 +3,386 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
   <title>.fun/pr</title>
+  <style>
+    :root {
+      --bg: #f6f7f8;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --primary: #111827;
+      --primary-hover: #0b1220;
+      --border: #e5e7eb;
+      --input-bg: #f9fafb;
+      --focus: #1e40af;
+      --success: #059669;
+      --warning: #d97706;
+      --error: #dc2626;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+    }
+    
+    body {
+      display: grid;
+      place-items: center;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', Courier, monospace;
+      line-height: 1.4;
+      padding: 20px;
+    }
+    
+    .calculator {
+      width: 420px;
+      max-width: 100%;
+      padding: 28px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+    }
+    
+    .calculator h2 {
+      font-size: 20px;
+      margin: 0 0 8px 0;
+      letter-spacing: 0.2px;
+    }
+    
+    .subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 0 0 20px 0;
+    }
+    
+    .section {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 12px 0;
+      color: var(--text);
+    }
+    
+    .input-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    
+    .input-group.single {
+      grid-template-columns: 1fr;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    
+    .input-wrapper {
+      position: relative;
+    }
+    
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font: inherit;
+      transition: border-color 120ms ease, background-color 120ms ease;
+      -moz-appearance: textfield;
+    }
+    
+    input[type="number"]:focus {
+      outline: 2px solid transparent;
+      border-color: var(--focus);
+      background: #fff;
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 20%, transparent);
+    }
+    
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    button {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 8px;
+      background: var(--primary);
+      color: #fff;
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+      transition: transform 80ms ease, background 120ms ease, border-color 120ms ease, opacity 120ms ease;
+    }
+    
+    button:hover { 
+      background: var(--primary-hover); 
+      border-color: var(--primary-hover); 
+    }
+    
+    button:active { 
+      transform: translateY(1px); 
+    }
+    
+    .result-box {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+    }
+    
+    .result-box.show {
+      display: block;
+    }
+    
+    .result-box.success {
+      background: color-mix(in oklab, var(--success) 10%, transparent);
+      border: 1px solid color-mix(in oklab, var(--success) 30%, transparent);
+      color: var(--success);
+    }
+    
+    .result-box.warning {
+      background: color-mix(in oklab, var(--warning) 10%, transparent);
+      border: 1px solid color-mix(in oklab, var(--warning) 30%, transparent);
+      color: var(--warning);
+    }
+    
+    .result-box.error {
+      background: color-mix(in oklab, var(--error) 10%, transparent);
+      border: 1px solid color-mix(in oklab, var(--error) 30%, transparent);
+      color: var(--error);
+    }
+    
+    .result-box strong {
+      font-size: 16px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    .result-details {
+      font-size: 13px;
+      margin-top: 8px;
+      opacity: 0.9;
+    }
+    
+    .footer-text {
+      margin: 16px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+    
+    .footer-text:first-of-type {
+      margin-top: 24px;
+    }
+    
+    a {
+      color: #1e40af;
+      text-decoration: none;
+    }
+    
+    a:hover { 
+      text-decoration: underline; 
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1220;
+        --card: #0f172a;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --primary: #e5e7eb;
+        --primary-hover: #ffffff;
+        --border: #1f2937;
+        --input-bg: #121a2c;
+        --focus: #60a5fa;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+      }
+      button { color: #0b1220; }
+    }
+  </style>
 </head>
 <body>
 
 <div class="calculator">
-  <h2>Calculadora de PR </h2>
+  <h2>Calculadora de PR</h2>
+  <p class="subtitle">Descubra quanto precisa tirar na prova de recuperação</p>
   
-  <div class="separator"></div> 
-  <label for="p1">Sua nota da P1 (máx. 3 pontos):</label>
-  <input type="number" id="p1" max="3" step="0.1">
-
-  <label for="p2">Sua nota da P2 (máx. 3 pontos):</label>
-  <input type="number" id="p2" max="3" step="0.1">
-
-  <label for="iaf">Sua nota do T.I (máx. 1 pontos):</label>
-  <input type="number" id="iaf" max="1" step="0.1">
-
-  <div class="separator"></div>
-
-  <label for="pr">Sua nota da PR (máx. 7 pontos):</label>
-  <input type="number" id="pr" max="7" step="0.1">
-
-  <button onclick="calcularNota()">Nota Final</button>
-
-  <div class="separator"></div>
-
-  <button id="verMaisBtn" onclick="toggleExtra()">+</button>
-  <div id="extraInputs" class="hidden">
-    <label for="sd">TG (máx. 1.5 pontos):</label>
-    <input type="number" id="sd" max="1.5" step="0.1">
-
-    <label for="pic">PIC (máx. 1.5 pontos):</label>
-    <input type="number" id="pic" max="1.5" step="0.1">
-
-    <label for="ponto-extra">Ponto Extra (máx. 0.5 ponto):</label>
-    <input type="number" id="ponto-extra" max="0.5" step="0.1">
-
-    <button class="small-button" onclick="calcularNotaComExtras()">Nota Final</button>
+  <div class="section">
+    <div class="section-title">Nota do 1º Semestre</div>
+    <div class="input-group single">
+      <div class="input-wrapper">
+        <label for="sem1">1º Semestre (máx. 10)</label>
+        <input type="number" id="sem1" max="10" step="0.1" placeholder="0.0">
+      </div>
+    </div>
   </div>
 
-  <p id="resultado"></p>
-  <p id="resultado-extra"></p>
-  <p id="error-msg"></p>
-  <div class="separator"></div>
-  </b>
-  <p class="footer-text">feito por  <a href="https://www.instagram.com/escobarpedrooo/">@escobarpedrooo</a> | <a href="https://github.com/escobarpython">GitHub</a></p>
-  <p class="footer-text">atualizado pela última vez em <b>28/10/25 - v3.0</b>.</p>
+  <div class="section">
+    <div class="section-title">Notas do 2º Semestre</div>
+    <div class="input-group">
+      <div class="input-wrapper">
+        <label for="p1">P1 (máx. 3)</label>
+        <input type="number" id="p1" max="3" step="0.1" placeholder="0.0">
+      </div>
+      <div class="input-wrapper">
+        <label for="p2">P2 (máx. 3)</label>
+        <input type="number" id="p2" max="3" step="0.1" placeholder="0.0">
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-wrapper">
+        <label for="ti">T.I (máx. 1)</label>
+        <input type="number" id="ti" max="1" step="0.1" placeholder="0.0">
+      </div>
+      <div class="input-wrapper">
+        <label for="tg">T.G (máx. 1.5)</label>
+        <input type="number" id="tg" max="1.5" step="0.1" placeholder="0.0">
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-wrapper">
+        <label for="pic">PIC (máx. 1.5)</label>
+        <input type="number" id="pic" max="1.5" step="0.1" placeholder="0.0">
+      </div>
+      <div class="input-wrapper">
+        <label for="pe">P.E (máx. 0.5)</label>
+        <input type="number" id="pe" max="0.5" step="0.1" placeholder="0.0">
+      </div>
+    </div>
+  </div>
+
+  <button onclick="calcular()">Calcular nota necessária na PR</button>
+
+  <div id="resultado" class="result-box"></div>
+
+  <p class="footer-text">feito por <a href="https://www.instagram.com/escobarpedrooo/">@escobarpedrooo</a> e o time da DaVint (Prédio 32) | <a href="https://github.com/escobarpython">GitHub</a></p>
+  <p class="footer-text">atualizado em <b>26/11/24 - v4.0</b></p>
 </div>
 
-<script src="script.js"></script>
+<script>
+function calcular() {
+  const sem1 = parseFloat(document.getElementById('sem1').value) || 0;
+  const p1 = parseFloat(document.getElementById('p1').value) || 0;
+  const p2 = parseFloat(document.getElementById('p2').value) || 0;
+  const ti = parseFloat(document.getElementById('ti').value) || 0;
+  const tg = parseFloat(document.getElementById('tg').value) || 0;
+  const pic = parseFloat(document.getElementById('pic').value) || 0;
+  const pe = parseFloat(document.getElementById('pe').value) || 0;
+
+  const resultado = document.getElementById('resultado');
+
+  // Validação
+  if (sem1 < 0 || sem1 > 10 || p1 < 0 || p1 > 3 || p2 < 0 || p2 > 3 || 
+      ti < 0 || ti > 1 || tg < 0 || tg > 1.5 || pic < 0 || pic > 1.5 || 
+      pe < 0 || pe > 0.5) {
+    resultado.className = 'result-box show error';
+    resultado.innerHTML = '<strong>Erro!</strong>Por favor, insira valores válidos dentro dos limites permitidos.';
+    return;
+  }
+
+  // Soma sem PR
+  const totalSemPR = sem1 + p1 + p2 + ti + tg + pic + pe;
+  
+  // Nota semifinal (P1 + P2 + T.I)
+  const notaSemifinal = p1 + p2 + ti;
+
+  // Precisa de 14 no total
+  const notaNecessaria = 14;
+  const faltando = notaNecessaria - totalSemPR;
+
+  if (faltando <= 0) {
+    resultado.className = 'result-box show success';
+    resultado.innerHTML = `
+      <strong>🎉 Você não precisa fazer a PR!</strong>
+      Sua nota atual é <strong>${totalSemPR.toFixed(2)}</strong>/14
+      <div class="result-details">
+        Você já atingiu a média necessária. Parabéns!
+      </div>
+    `;
+    return;
+  }
+
+  // Calcula nota necessária na PR
+  // Fórmula: (notaSemifinal + PR) / 2 = nota_nova
+  // nota_nova + extras = 14
+  // Então: nota_nova = totalSemPR + faltando - (P1 + P2 + T.I)
+  // (notaSemifinal + PR) / 2 = nota_nova
+  // PR = (nota_nova * 2) - notaSemifinal
+
+  const notaNovaDesejada = notaSemifinal + faltando;
+  const prNecessaria = (notaNovaDesejada * 2) - notaSemifinal;
+
+  if (prNecessaria > 7) {
+    resultado.className = 'result-box show error';
+    resultado.innerHTML = `
+      <strong>⚠️ Não é possível atingir a média</strong>
+      Você precisaria tirar <strong>${prNecessaria.toFixed(2)}</strong> na PR (máx. 7.0)
+      <div class="result-details">
+        Sua nota atual: ${totalSemPR.toFixed(2)}/14<br>
+        Falta: ${faltando.toFixed(2)} pontos<br>
+        Infelizmente, mesmo com nota máxima na PR, não é possível atingir 14 pontos.
+      </div>
+    `;
+    return;
+  }
+
+  if (prNecessaria < 0) {
+    prNecessaria = 0;
+  }
+
+  let classe = 'warning';
+  let emoji = '📝';
+  if (prNecessaria <= 3) {
+    classe = 'success';
+    emoji = '✅';
+  } else if (prNecessaria >= 6) {
+    classe = 'warning';
+    emoji = '⚠️';
+  }
+
+  resultado.className = `result-box show ${classe}`;
+  resultado.innerHTML = `
+    <strong>${emoji} Nota necessária na PR: ${prNecessaria.toFixed(2)}/7.0</strong>
+    <div class="result-details">
+      Sua nota atual: ${totalSemPR.toFixed(2)}/14<br>
+      Falta: ${faltando.toFixed(2)} pontos<br>
+      Nota Parcial (P1+P2+T.I): ${notaSemifinal.toFixed(2)}<br>
+      <br>
+      ${prNecessaria <= 3 ? 'Dificuldade: Fácil' : 
+        prNecessaria <= 5 ? 'Dificuldade: Média // Normal' :
+        'Dificuldade: Díficil'}
+    </div>
+  `;
+}
+</script>
 
 </body>
-<footer>
-    
-</footer>
 </html>
