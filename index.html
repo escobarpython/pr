@@ -210,6 +210,58 @@
       text-decoration: underline; 
     }
     
+    @media (max-width: 480px) {
+      body {
+        padding: 12px;
+      }
+      
+      .calculator {
+        width: 100%;
+        padding: 20px 16px;
+      }
+      
+      .calculator h2 {
+        font-size: 18px;
+      }
+      
+      .subtitle {
+        font-size: 12px;
+      }
+      
+      .input-group {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      
+      .section {
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+      }
+      
+      input[type="number"] {
+        padding: 12px;
+        font-size: 16px;
+      }
+      
+      button {
+        padding: 14px;
+        font-size: 15px;
+      }
+      
+      .result-box {
+        padding: 14px;
+        font-size: 13px;
+      }
+      
+      .result-box strong {
+        font-size: 15px;
+      }
+      
+      .result-details {
+        font-size: 12px;
+      }
+    }
+    
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #0b1220;
@@ -338,7 +390,7 @@ function calcular() {
   // PR = (nota_nova * 2) - notaSemifinal
 
   const notaNovaDesejada = notaSemifinal + faltando;
-  const prNecessaria = (notaNovaDesejada * 2) - notaSemifinal;
+  let prNecessaria = (notaNovaDesejada * 2) - notaSemifinal;
 
   if (prNecessaria > 7) {
     resultado.className = 'result-box show error';
@@ -386,5 +438,6 @@ function calcular() {
 
 </body>
 </html>
+
 
 
