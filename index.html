@@ -4,441 +4,462 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>.fun/pr</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #f6f7f8;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #6b7280;
-      --primary: #111827;
-      --primary-hover: #0b1220;
-      --border: #e5e7eb;
-      --input-bg: #f9fafb;
-      --focus: #1e40af;
-      --success: #059669;
-      --warning: #d97706;
-      --error: #dc2626;
-    }
-    
-    * {
-      box-sizing: border-box;
-    }
-    
-    html, body {
-      height: 100%;
-    }
-    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; }
+
     body {
+      background: #fff;
+      color: #000;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
       display: grid;
       place-items: center;
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Courier New', Courier, monospace;
-      line-height: 1.4;
-      padding: 20px;
+      padding: 32px 16px;
+      min-height: 100%;
     }
-    
-    .calculator {
-      width: 420px;
-      max-width: 100%;
-      padding: 28px;
-      border-radius: 12px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+
+    .card {
+      width: 100%;
+      max-width: 440px;
+      border: 2px solid #000;
     }
-    
-    .calculator h2 {
-      font-size: 20px;
-      margin: 0 0 8px 0;
-      letter-spacing: 0.2px;
+
+    /* Header */
+    .card-header {
+      padding: 20px 24px 18px;
+      border-bottom: 2px solid #000;
     }
-    
-    .subtitle {
-      font-size: 13px;
-      color: var(--muted);
-      margin: 0 0 20px 0;
+
+    .card-header h1 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
     }
-    
+
+    .card-header p {
+      margin-top: 4px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    /* Sections */
     .section {
-      margin-bottom: 24px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      border-bottom: 1px solid #000;
     }
-    
+
     .section:last-of-type {
       border-bottom: none;
-      margin-bottom: 0;
     }
-    
-    .section-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin: 0 0 12px 0;
-      color: var(--text);
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #000;
+      margin-bottom: 14px;
     }
-    
-    .input-group {
+
+    /* Input grid */
+    .input-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 10px;
+      margin-bottom: 10px;
     }
-    
-    .input-group.single {
-      grid-template-columns: 1fr;
+
+    .input-row:last-child { margin-bottom: 0; }
+
+    .input-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .input-row.cols-2 { grid-template-columns: 1fr 1fr; }
+    .input-row.cols-1 { grid-template-columns: 1fr; }
+
+    .field { display: flex; flex-direction: column; gap: 5px; }
+
+    .field label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: #555;
+      text-transform: uppercase;
     }
-    
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-    
-    .input-wrapper {
-      position: relative;
-    }
-    
-    input[type="number"] {
+
+    .field input[type="number"] {
       width: 100%;
-      padding: 10px 12px;
-      background: var(--input-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font: inherit;
-      transition: border-color 120ms ease, background-color 120ms ease;
-      -moz-appearance: textfield;
-    }
-    
-    input[type="number"]:focus {
-      outline: 2px solid transparent;
-      border-color: var(--focus);
+      padding: 9px 11px;
       background: #fff;
-      box-shadow: 0 0 0 3px color-mix(in oklab, var(--focus) 20%, transparent);
+      border: 1.5px solid #aaa;
+      border-radius: 0;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      color: #000;
+      transition: border-color 80ms;
+      -moz-appearance: textfield;
+      appearance: textfield;
     }
-    
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+
+    .field input[type="number"]::-webkit-outer-spin-button,
+    .field input[type="number"]::-webkit-inner-spin-button { display: none; }
+
+    .field input[type="number"]:focus {
+      outline: none;
+      border-color: #000;
     }
-    
+
+    .field input[type="number"]::placeholder { color: #bbb; }
+
+    /* Semifinal display */
+    .semifinal-bar {
+      margin-top: 14px;
+      padding: 10px 12px;
+      background: #f5f5f5;
+      border: 1.5px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .semifinal-bar span:first-child {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    .semifinal-bar .value {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: -0.5px;
+    }
+
+    .semifinal-bar .denom {
+      font-size: 12px;
+      font-weight: 400;
+      color: #888;
+    }
+
+    /* Track bar */
+    .track-wrap {
+      margin-top: 8px;
+      height: 3px;
+      background: #e8e8e8;
+      border: 1px solid #ccc;
+    }
+
+    .track-fill {
+      height: 100%;
+      background: #000;
+      width: 0%;
+      transition: width 200ms ease;
+    }
+
+    /* Button */
+    .btn-section {
+      padding: 0 24px 20px;
+    }
+
     button {
       width: 100%;
-      padding: 12px 14px;
-      margin-top: 8px;
-      background: var(--primary);
+      padding: 13px 16px;
+      background: #000;
       color: #fff;
-      border: 1px solid var(--primary);
-      border-radius: 8px;
-      cursor: pointer;
+      border: 2px solid #000;
+      border-radius: 0;
       font: inherit;
-      font-weight: 600;
-      transition: transform 80ms ease, background 120ms ease, border-color 120ms ease, opacity 120ms ease;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 80ms, color 80ms;
     }
-    
-    button:hover { 
-      background: var(--primary-hover); 
-      border-color: var(--primary-hover); 
+
+    button:hover {
+      background: #fff;
+      color: #000;
     }
-    
-    button:active { 
-      transform: translateY(1px); 
-    }
-    
-    .result-box {
-      margin-top: 20px;
+
+    button:active { opacity: 0.8; }
+
+    /* Result */
+    .result {
+      margin: 0 24px 20px;
       padding: 16px;
-      border-radius: 8px;
-      font-size: 14px;
+      border: 2px solid #000;
       display: none;
     }
-    
-    .result-box.show {
-      display: block;
-    }
-    
-    .result-box.success {
-      background: color-mix(in oklab, var(--success) 10%, transparent);
-      border: 1px solid color-mix(in oklab, var(--success) 30%, transparent);
-      color: var(--success);
-    }
-    
-    .result-box.warning {
-      background: color-mix(in oklab, var(--warning) 10%, transparent);
-      border: 1px solid color-mix(in oklab, var(--warning) 30%, transparent);
-      color: var(--warning);
-    }
-    
-    .result-box.error {
-      background: color-mix(in oklab, var(--error) 10%, transparent);
-      border: 1px solid color-mix(in oklab, var(--error) 30%, transparent);
-      color: var(--error);
-    }
-    
-    .result-box strong {
-      font-size: 16px;
-      display: block;
-      margin-bottom: 8px;
-    }
-    
-    .result-details {
+
+    .result.show { display: block; }
+
+    .result.ok   { border-color: #000; background: #f0faf5; }
+    .result.warn { border-color: #000; background: #fffbf0; }
+    .result.fail { border-color: #000; background: #fff5f5; }
+
+    .result-headline {
       font-size: 13px;
-      margin-top: 8px;
-      opacity: 0.9;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-bottom: 10px;
+      line-height: 1.3;
     }
-    
-    .footer-text {
-      margin: 16px 0 0;
+
+    .result.ok   .result-headline { color: #065f46; }
+    .result.warn .result-headline { color: #92400e; }
+    .result.fail .result-headline { color: #991b1b; }
+
+    /* PR progress bar */
+    .pr-track-wrap {
+      height: 6px;
+      background: #e8e8e8;
+      border: 1px solid #ccc;
+      margin-bottom: 12px;
+    }
+
+    .pr-track-fill {
+      height: 100%;
+      transition: width 300ms ease;
+    }
+
+    .result.ok   .pr-track-fill { background: #059669; }
+    .result.warn .pr-track-fill { background: #d97706; }
+    .result.fail .pr-track-fill { background: #dc2626; }
+
+    .result-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
       font-size: 12px;
-      color: var(--muted);
-      text-align: center;
+      color: #444;
     }
-    
-    .footer-text:first-of-type {
-      margin-top: 24px;
+
+    .result-row .val { font-weight: 600; color: #000; }
+
+    .result-tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 3px 8px;
+      border: 1px solid currentColor;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
     }
-    
-    a {
-      color: #1e40af;
+
+    .result.ok   .result-tag { color: #065f46; }
+    .result.warn .result-tag { color: #92400e; }
+    .result.fail .result-tag { color: #991b1b; }
+
+    /* Footer */
+    .card-footer {
+      padding: 14px 24px;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-footer a {
+      font-size: 11px;
+      color: #555;
       text-decoration: none;
+      font-weight: 500;
     }
-    
-    a:hover { 
-      text-decoration: underline; 
+
+    .card-footer a:hover { color: #000; }
+
+    .card-footer .version {
+      font-size: 10px;
+      color: #aaa;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
     }
-    
+
     @media (max-width: 480px) {
-      body {
-        padding: 12px;
+      body { padding: 0; align-items: flex-start; }
+
+      .card {
+        max-width: 100%;
+        border-left: none;
+        border-right: none;
+        border-top: none;
       }
-      
-      .calculator {
-        width: 100%;
-        padding: 20px 16px;
-      }
-      
-      .calculator h2 {
-        font-size: 18px;
-      }
-      
-      .subtitle {
-        font-size: 12px;
-      }
-      
-      .input-group {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      
-      .section {
-        margin-bottom: 20px;
-        padding-bottom: 16px;
-      }
-      
-      input[type="number"] {
-        padding: 12px;
-        font-size: 16px;
-      }
-      
-      button {
-        padding: 14px;
-        font-size: 15px;
-      }
-      
-      .result-box {
-        padding: 14px;
-        font-size: 13px;
-      }
-      
-      .result-box strong {
-        font-size: 15px;
-      }
-      
-      .result-details {
-        font-size: 12px;
-      }
-    }
-    
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b1220;
-        --card: #0f172a;
-        --text: #e5e7eb;
-        --muted: #9ca3af;
-        --primary: #e5e7eb;
-        --primary-hover: #ffffff;
-        --border: #1f2937;
-        --input-bg: #121a2c;
-        --focus: #60a5fa;
-        --success: #10b981;
-        --warning: #f59e0b;
-        --error: #ef4444;
-      }
-      button { color: #0b1220; }
+
+      .input-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+      .field input[type="number"] { font-size: 16px; padding: 11px; }
     }
   </style>
 </head>
 <body>
 
-<div class="calculator">
-  <h2>Calculadora de PR</h2>
-  <p class="subtitle">Para saber a nota necessária na prova</p>
-  
+<div class="card">
+
+  <div class="card-header">
+    <h1>Calculadora de PR</h1>
+    <p>Descubra quanto precisa tirar na prova de recuperação</p>
+  </div>
+
   <div class="section">
-    <div class="section-title">Nota do 1º Semestre</div>
-    <div class="input-group single">
-      <div class="input-wrapper">
-        <label for="sem1">1º Semestre (máx. 10)</label>
-        <input type="number" id="sem1" max="10" step="0.1" placeholder="0.0">
+    <div class="section-label">Nota Semifinal</div>
+    <div class="input-row cols-3">
+      <div class="field">
+        <label for="p1">P1 / 3</label>
+        <input type="number" id="p1" min="0" max="3" step="0.1" placeholder="0.0" oninput="atualizar()">
       </div>
+      <div class="field">
+        <label for="p2">P2 / 3</label>
+        <input type="number" id="p2" min="0" max="3" step="0.1" placeholder="0.0" oninput="atualizar()">
+      </div>
+      <div class="field">
+        <label for="ti">T.I / 1</label>
+        <input type="number" id="ti" min="0" max="1" step="0.1" placeholder="0.0" oninput="atualizar()">
+      </div>
+    </div>
+
+    <div class="semifinal-bar">
+      <span>Semifinal</span>
+      <div>
+        <span class="value" id="sf-val">0.0</span>
+        <span class="denom"> / 7.0</span>
+      </div>
+    </div>
+    <div class="track-wrap">
+      <div class="track-fill" id="sf-track"></div>
     </div>
   </div>
 
   <div class="section">
-    <div class="section-title">Notas do 2º Semestre</div>
-    <div class="input-group">
-      <div class="input-wrapper">
-        <label for="p1">P1 (máx. 3)</label>
-        <input type="number" id="p1" max="3" step="0.1" placeholder="0.0">
+    <div class="section-label">Pontos Adicionais</div>
+    <div class="input-row cols-2">
+      <div class="field">
+        <label for="tg">T.G / 1.5</label>
+        <input type="number" id="tg" min="0" max="1.5" step="0.1" placeholder="0.0">
       </div>
-      <div class="input-wrapper">
-        <label for="p2">P2 (máx. 3)</label>
-        <input type="number" id="p2" max="3" step="0.1" placeholder="0.0">
-      </div>
-    </div>
-    <div class="input-group">
-      <div class="input-wrapper">
-        <label for="ti">T.I (máx. 1)</label>
-        <input type="number" id="ti" max="1" step="0.1" placeholder="0.0">
-      </div>
-      <div class="input-wrapper">
-        <label for="tg">T.G (máx. 1.5)</label>
-        <input type="number" id="tg" max="1.5" step="0.1" placeholder="0.0">
+      <div class="field">
+        <label for="pic">PIC / 1.5</label>
+        <input type="number" id="pic" min="0" max="1.5" step="0.1" placeholder="0.0">
       </div>
     </div>
-    <div class="input-group">
-      <div class="input-wrapper">
-        <label for="pic">PIC (máx. 1.5)</label>
-        <input type="number" id="pic" max="1.5" step="0.1" placeholder="0.0">
-      </div>
-      <div class="input-wrapper">
-        <label for="pe">P.E (máx. 0.5)</label>
-        <input type="number" id="pe" max="0.5" step="0.1" placeholder="0.0">
+    <div class="input-row cols-1">
+      <div class="field">
+        <label for="pe">P.E — Ponto Extra / 0.5</label>
+        <input type="number" id="pe" min="0" max="0.5" step="0.1" placeholder="0.0">
       </div>
     </div>
   </div>
 
-  <button onclick="calcular()">Calcular nota necessária na PR</button>
+  <div class="btn-section">
+    <button onclick="calcular()">Calcular →</button>
+  </div>
 
-  <div id="resultado" class="result-box"></div>
+  <div id="resultado" class="result"></div>
 
-  <p class="footer-text">feito por <a href="https://www.instagram.com/escobarpedrooo/">@escobarpedrooo</a>| <a href="https://github.com/escobarpython">GitHub</a></p>
-  <p class="footer-text">atualizado em <b>26/11/24 - v4.0</b></p>
+  <div class="card-footer">
+    <a href="https://www.instagram.com/escobarpython/">@escobarpython</a>
+    <span class="version">v5 — jun 2026</span>
+  </div>
+
 </div>
 
 <script>
-function calcular() {
-  const sem1 = parseFloat(document.getElementById('sem1').value) || 0;
+function atualizar() {
   const p1 = parseFloat(document.getElementById('p1').value) || 0;
   const p2 = parseFloat(document.getElementById('p2').value) || 0;
   const ti = parseFloat(document.getElementById('ti').value) || 0;
-  const tg = parseFloat(document.getElementById('tg').value) || 0;
+  const sf = p1 + p2 + ti;
+  document.getElementById('sf-val').textContent = sf.toFixed(1);
+  document.getElementById('sf-track').style.width = Math.min(sf / 7 * 100, 100) + '%';
+}
+
+function calcular() {
+  const p1  = parseFloat(document.getElementById('p1').value)  || 0;
+  const p2  = parseFloat(document.getElementById('p2').value)  || 0;
+  const ti  = parseFloat(document.getElementById('ti').value)  || 0;
+  const tg  = parseFloat(document.getElementById('tg').value)  || 0;
   const pic = parseFloat(document.getElementById('pic').value) || 0;
-  const pe = parseFloat(document.getElementById('pe').value) || 0;
+  const pe  = parseFloat(document.getElementById('pe').value)  || 0;
 
-  const resultado = document.getElementById('resultado');
+  const res = document.getElementById('resultado');
 
-  // Validação
-  if (sem1 < 0 || sem1 > 10 || p1 < 0 || p1 > 3 || p2 < 0 || p2 > 3 || 
-      ti < 0 || ti > 1 || tg < 0 || tg > 1.5 || pic < 0 || pic > 1.5 || 
-      pe < 0 || pe > 0.5) {
-    resultado.className = 'result-box show error';
-    resultado.innerHTML = '<strong>Erro!</strong>Por favor, insira valores válidos dentro dos limites permitidos.';
+  if (p1 > 3 || p2 > 3 || ti > 1 || tg > 1.5 || pic > 1.5 || pe > 0.5 ||
+      [p1,p2,ti,tg,pic,pe].some(v => v < 0)) {
+    res.className = 'result show fail';
+    res.innerHTML = `
+      <div class="result-headline">Valores fora dos limites</div>
+      <div class="result-rows">
+        <div class="result-row">Verifique os campos e tente novamente.</div>
+      </div>`;
     return;
   }
 
-  // Soma sem PR
-  const totalSemPR = sem1 + p1 + p2 + ti + tg + pic + pe;
-  
-  // Nota semifinal (P1 + P2 + T.I)
-  const notaSemifinal = p1 + p2 + ti;
+  const semifinal  = p1 + p2 + ti;
+  const extras     = tg + pic + pe;
+  const notaAtual  = semifinal + extras;
 
-  // Precisa de 14 no total
-  const notaNecessaria = 14;
-  const faltando = notaNecessaria - totalSemPR;
-
-  if (faltando <= 0) {
-    resultado.className = 'result-box show success';
-    resultado.innerHTML = `
-      <strong>🎉 Você não precisa fazer a PR!</strong>
-      Sua nota atual é <strong>${totalSemPR.toFixed(2)}</strong>/14
-      <div class="result-details">
-        Você já atingiu a média necessária. Parabéns!
+  if (notaAtual >= 7.0) {
+    res.className = 'result show ok';
+    res.innerHTML = `
+      <div class="pr-track-wrap"><div class="pr-track-fill" style="width:100%"></div></div>
+      <div class="result-headline">Aprovado — sem precisar da PR</div>
+      <div class="result-rows">
+        <div class="result-row"><span>Semifinal (P1+P2+T.I)</span><span class="val">${semifinal.toFixed(2)} / 7</span></div>
+        <div class="result-row"><span>Adicionais (T.G+PIC+P.E)</span><span class="val">+${extras.toFixed(2)}</span></div>
+        <div class="result-row"><span>Nota final</span><span class="val">${notaAtual.toFixed(2)}</span></div>
       </div>
-    `;
+      <span class="result-tag">Parabéns</span>`;
     return;
   }
 
-  // Calcula nota necessária na PR
-  // Fórmula: (notaSemifinal + PR) / 2 = nota_nova
-  // nota_nova + extras = 14
-  // Então: nota_nova = totalSemPR + faltando - (P1 + P2 + T.I)
-  // (notaSemifinal + PR) / 2 = nota_nova
-  // PR = (nota_nova * 2) - notaSemifinal
+  // PR = 2 × (7.0 − extras) − semifinal
+  const pr = 2 * (7.0 - extras) - semifinal;
 
-  const notaNovaDesejada = notaSemifinal + faltando;
-  let prNecessaria = (notaNovaDesejada * 2) - notaSemifinal;
-
-  if (prNecessaria > 7) {
-    resultado.className = 'result-box show error';
-    resultado.innerHTML = `
-      <strong>⚠️ Não é possível atingir a média</strong>
-      Você precisaria tirar <strong>${prNecessaria.toFixed(2)}</strong> na PR (máx. 7.0)
-      <div class="result-details">
-        Sua nota atual: ${totalSemPR.toFixed(2)}/14<br>
-        Falta: ${faltando.toFixed(2)} pontos<br>
-        Infelizmente, mesmo com nota máxima na PR, não é possível atingir 14 pontos.
+  if (pr > 7) {
+    const pct = Math.min(pr / 7 * 100, 100);
+    res.className = 'result show fail';
+    res.innerHTML = `
+      <div class="pr-track-wrap"><div class="pr-track-fill" style="width:${pct}%"></div></div>
+      <div class="result-headline">Impossível fechar 7.0 — precisaria de ${pr.toFixed(2)} na PR</div>
+      <div class="result-rows">
+        <div class="result-row"><span>Semifinal (P1+P2+T.I)</span><span class="val">${semifinal.toFixed(2)} / 7</span></div>
+        <div class="result-row"><span>Adicionais (T.G+PIC+P.E)</span><span class="val">+${extras.toFixed(2)}</span></div>
+        <div class="result-row"><span>PR máxima possível</span><span class="val">7.0</span></div>
       </div>
-    `;
+      <span class="result-tag">Reprovado</span>`;
     return;
   }
 
-  if (prNecessaria < 0) {
-    prNecessaria = 0;
-  }
+  const pct = Math.round(pr / 7 * 100);
+  const hard = pr <= 3 ? 'ok' : pr <= 5.5 ? 'warn' : 'fail';
+  const tag  = pr <= 3 ? 'Tranquilo' : pr <= 5.5 ? 'Atenção' : 'Difícil';
 
-  let classe = 'warning';
-  let emoji = '📝';
-  if (prNecessaria <= 3) {
-    classe = 'success';
-    emoji = '✅';
-  } else if (prNecessaria >= 6) {
-    classe = 'warning';
-    emoji = '⚠️';
-  }
-
-  resultado.className = `result-box show ${classe}`;
-  resultado.innerHTML = `
-    <strong>${emoji} Nota necessária na PR: ${prNecessaria.toFixed(2)}/7.0</strong>
-    <div class="result-details">
-      Sua nota atual: ${totalSemPR.toFixed(2)}/14<br>
-      Falta: ${faltando.toFixed(2)} pontos<br>
-      Nota Parcial (P1+P2+T.I): ${notaSemifinal.toFixed(2)}<br>
-      <br>
-      ${prNecessaria <= 3 ? 'Dificuldade: Fácil' : 
-        prNecessaria <= 5 ? 'Dificuldade: Média // Normal' :
-        'Dificuldade: Díficil'}
+  res.className = `result show ${hard}`;
+  res.innerHTML = `
+    <div class="pr-track-wrap"><div class="pr-track-fill" style="width:${pct}%"></div></div>
+    <div class="result-headline">Precisa de <strong>${pr.toFixed(2)}</strong> na PR (máx. 7.0)</div>
+    <div class="result-rows">
+      <div class="result-row"><span>Semifinal (P1+P2+T.I)</span><span class="val">${semifinal.toFixed(2)} / 7</span></div>
+      <div class="result-row"><span>Adicionais (T.G+PIC+P.E)</span><span class="val">+${extras.toFixed(2)}</span></div>
+      <div class="result-row"><span>Nota após PR</span><span class="val">7.00</span></div>
     </div>
-  `;
+    <span class="result-tag">${tag}</span>`;
 }
 </script>
 
 </body>
 </html>
-
-
-
-
